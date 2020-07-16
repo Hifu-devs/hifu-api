@@ -1,33 +1,38 @@
-### Type of change made:
+# Merge to Master PR
+
+- [ ] All test passing, Test percentage: ___%
+- [ ] Runs in local dev environment
+- [ ] PR Documented, Ready for Review
+
+## Type of change made
+
 - [ ] Bugfix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
 - [ ] Test
 
-#### What's this PR do? (Detailed Discription)
+### What's this PR do? (Detailed Description)
 
-*
+  loreum ipsum 
 
+### Created (Classes, Methods, Migrations, etc.)
 
-#### Where should the reviewer start?
+- Classes
+- Methods
+- Migrations
+- etc
 
-*
+### Updated (Classes, Methods, Models, etc.)
 
+- Classes
+- Methods
+- Models
+- etc
 
-#### How should this be manually tested?
+### Technical Debt Added (What is not being tested? what does this PR break?)
 
-*
+- Happy Paths
+- Sad Paths
+- etc
 
-
-#### Any background context you want to provide?
-
-*
-
-
-#### Screenshots (if appropriate)
-
-
-
-#### Questions:
-
-*
+### Notes
