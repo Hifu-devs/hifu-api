@@ -1,21 +1,24 @@
 language: ruby
-rvm:
-- 2.0.0
-- 1.9.3
-- jruby-19mode
-- rbx-2
+sudo: false
 cache:
-- bundler
-before_script:
-- bundle exec rake db:create
-- bundle exec rake db:migrate
-- bundle exec rake assets:precompile
+  bundler: true
+rbenv:
+- 2.5.3
+addons:
+  postgresql: 9.6
+dist: xenial
+before_install:
+- yes | gem update --system --force
+- gem install bundler
 script:
- — bundle exec rspec
- deploy:
+- yarn
+- bundle exec rails db:{create,migrate} RAILS_ENV=test
+- bundle exec rspec
+deploy:
   provider: heroku
-  api_key:
-    secure: "uEMKijlrzmlHgRjatpVT3b2SGrUowvHBs1FdNCJaw17LfDiRW7NGPSSjWLkxTTfT81VwsZEUn+EQmq+9J2d7veZnGkRPYYPc51jHTVdGws+JvX9NFu6zmTvURuFTmzZHF6gFtCeiq6cHPJ9vleXyGvest62cSwOUbIQ+ycpMw18deUMBmuAidG7zjVP2H2o2I4ml3BSuRO/ldjU8BpZH3bAjf7cOaAsZwO5ufp7CY/1/BlueqHW1ccQf58QdzrXt9S5kJ63rQbncTHA87ymFvEuj0iDGeK6wNJvbhOd2CfOlmNfnKR2XyxjGgvZP7fuJe6EQ7YMD1wTDHmDsQu993D+io2D0w3Ag+Zt8sel5NywARV+0GXJDuJUs/YcsHU98N40KZP/pnsv4fttLUWmuqcvEjMS2cFVt5fMZhR3PjXMuLg/ItB7H73WXevYTceqNz4L3PpWVz//cE27DPHpw5f2vE8zoY79NV5Gl97auD2SUWObmWNGoL/1qAvZ0/82yQ2/0n9AmCWIDYfwUBtK+S7BtkFCIAKY2cvtIqH30qiKNRvuPd/SjxmxiFm2ajLBEN3Q9+OJdMyJ0wkRy8BVLMXUN72Je8f8Tnr43y0w8A2L3aJdXEazvhxBy9CmHSOIRte8O0P05hDPbP0pPs67dkjOH/cQzY5swfyzT2ji/2YI="
   app: hifu-api
   on:
-    repo: hifu-devs/hifu-api
+    repo: Hifu-dev/hifu-api
+  run: rails db:migrate
+  api_key:
+    secure: "uEMKijlrzmlHgRjatpVT3b2SGrUowvHBs1FdNCJaw17LfDiRW7NGPSSjWLkxTTfT81VwsZEUn+EQmq+9J2d7veZnGkRPYYPc51jHTVdGws+JvX9NFu6zmTvURuFTmzZHF6gFtCeiq6cHPJ9vleXyGvest62cSwOUbIQ+ycpMw18deUMBmuAidG7zjVP2H2o2I4ml3BSuRO/ldjU8BpZH3bAjf7cOaAsZwO5ufp7CY/1/BlueqHW1ccQf58QdzrXt9S5kJ63rQbncTHA87ymFvEuj0iDGeK6wNJvbhOd2CfOlmNfnKR2XyxjGgvZP7fuJe6EQ7YMD1wTDHmDsQu993D+io2D0w3Ag+Zt8sel5NywARV+0GXJDuJUs/YcsHU98N40KZP/pnsv4fttLUWmuqcvEjMS2cFVt5fMZhR3PjXMuLg/ItB7H73WXevYTceqNz4L3PpWVz//cE27DPHpw5f2vE8zoY79NV5Gl97auD2SUWObmWNGoL/1qAvZ0/82yQ2/0n9AmCWIDYfwUBtK+S7BtkFCIAKY2cvtIqH30qiKNRvuPd/SjxmxiFm2ajLBEN3Q9+OJdMyJ0wkRy8BVLMXUN72Je8f8Tnr43y0w8A2L3aJdXEazvhxBy9CmHSOIRte8O0P05hDPbP0pPs67dkjOH/cQzY5swfyzT2ji/2YI="
