@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_one :route
-  has_one :contact
+  has_one :route, dependent: :destroy
+  has_one :contact, dependent: :destroy
 
 end
