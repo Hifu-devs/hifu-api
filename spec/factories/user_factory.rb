@@ -13,6 +13,12 @@ FactoryBot.define do
     medical_conditions {Faker::Hipster.word + "itis"}
     heightCM {Faker::Number.number(digits: 2)}
     weightKG {Faker::Number.number(digits: 2)}
+
+    factory :user_route_contact do
+      route
+      contact
+    end
+
   end
 end
 
