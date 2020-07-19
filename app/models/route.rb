@@ -1,6 +1,6 @@
 class Route < ApplicationRecord
   belongs_to :user
-  has_many :waypoints
+  has_many :waypoints, dependent: :destroy
   has_one :contact, through: :user
 
 # default status is 0, active
