@@ -26,7 +26,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # gem 'rack-cors'
 
 gem 'travis'
-
 gem 'travis-lint'
 
 group :development, :test do
@@ -36,10 +35,16 @@ group :development, :test do
   gem 'pry'
   gem 'shoulda-matchers'
   gem 'capybara'
+  gem 'faker'
+  gem 'factory_bot_rails'
 end
 
 group :development do
   gem 'listen', '~> 3.2'
+end
+
+group :test do
+  gem 'simplecov'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
