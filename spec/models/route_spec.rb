@@ -8,7 +8,7 @@ RSpec.describe Route, type: :model do
   end
 
   describe 'class methods' do
-    it '.find_alerts' do
+    it '.send_alerts' do
         u = User.create(
             name: Faker::Name.name,
             email: Faker::Internet.email,
@@ -83,10 +83,23 @@ RSpec.describe Route, type: :model do
             notes: Faker::Music::Prince.lyric
             )
 
+        c1 = Contact.create(
+          user_id: u.id,
+          name: "Patty Hearst",
+          email: "patty@example.com",
+          phone: "+13038758190"
+        )
+
+        c2 = Contact.create(
+          user_id: u2.id,
+          name: "Babe Ruth",
+          email: "babe@example.com",
+          phone: "+13038758190"
+        )
+
         # last_wp = nil
         # eta = DateTime.parse(r.start_time) + 1.hours
-
-        expect(Route.find_alerts(Time.now.strftime("%Y-%m-%d %H:%M")).count).to equal(2)
+        expect(Route.send_alerts(Time.now.strftime("%Y-%m-%d %H:%M")).count).to equal(2)
       end
 
     end

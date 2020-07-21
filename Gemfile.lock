@@ -90,6 +90,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.14.0)
       faraday (>= 0.7.4, < 1.0)
+    fast_jsonapi (1.5)
+      activesupport (>= 4.2)
     ffi (1.13.1)
     gh (0.15.1)
       addressable (~> 2.4.0)
@@ -240,6 +242,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   faraday
+  fast_jsonapi
   graphql
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
