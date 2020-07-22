@@ -14,5 +14,7 @@ module Types
     field :medical_conditions, String, null: true
     field :heightCM, Integer, null: true
     field :weightKG, Integer, null: true
+    field :contact, Types::ContactType, null: true
+    field :route, Types::RouteType, null: true
   end
 end
