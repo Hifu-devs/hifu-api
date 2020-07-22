@@ -53,7 +53,7 @@ puts "\n-- Grab a snickers, we're about to make a bunch of entries O(n^2) style 
       )
 
   last_wp = nil
-  eta = DateTime.parse(r.start_time) + 1.hours
+  eta = r.start_time + 1.hours
 
   i.times do |t|
     print_and_flush("\tCreating User and Routes #{i+1}%" + 

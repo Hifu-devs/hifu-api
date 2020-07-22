@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_19_052302) do
+ActiveRecord::Schema.define(version: 2020_07_21_231340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(version: 2020_07_19_052302) do
 
   create_table "routes", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "start_time"
-    t.string "end_time"
     t.string "activity"
     t.integer "party_size"
     t.string "notes"
     t.integer "status", default: 0
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.index ["user_id"], name: "index_routes_on_user_id"
   end
 
