@@ -65,6 +65,13 @@ RSpec.describe Route, type: :model do
             party_size: Faker::Number.number(digits: 1),
             notes: Faker::Music::Prince.lyric
             )
+
+          w1 = Waypoint.create(
+            route_id: r1.id,
+            latitude: 40.3453,
+            longitude: -120.3642
+          )
+
         r2 = Route.create(
             user_id: u2.id,
             start_time: Faker::Time.between(from: 1.seconds.from_now, to: 60.seconds.from_now),
@@ -73,6 +80,19 @@ RSpec.describe Route, type: :model do
             party_size: Faker::Number.number(digits: 1),
             notes: Faker::Music::Prince.lyric
             )
+
+          w2 = Waypoint.create(
+            route_id: r2.id,
+            latitude: 40.3453,
+            longitude: -120.3642
+          )
+
+          w3 = Waypoint.create(
+            route_id: r2.id,
+            latitude: 40.6222,
+            longitude: -120.1032,
+            previous_id: w2.id
+          )
 
         r3 = Route.create(
             user_id: u3.id,
@@ -86,20 +106,19 @@ RSpec.describe Route, type: :model do
         c1 = Contact.create(
           user_id: u.id,
           name: "Patty Hearst",
-          email: "patty@example.com",
-          phone: "+13038758190"
+          email: "flewelling.margo@gmail.com",
+          phone: "+19192590877"
         )
 
         c2 = Contact.create(
           user_id: u2.id,
           name: "Babe Ruth",
-          email: "babe@example.com",
-          phone: "+13038758190"
+          email: "flewelling.margo@gmail.com",
+          phone: "+19192590877"
         )
 
-        # last_wp = nil
-        # eta = DateTime.parse(r.start_time) + 1.hours
         expect(Route.send_alerts(Time.now.strftime("%Y-%m-%d %H:%M")).count).to equal(2)
+        # expect((Route.send_email([r1, r2])).body).to eq("Email sent successfully")
       end
 
     end
