@@ -1,3 +1,5 @@
+require 'json'
+
 class Route < ApplicationRecord
   belongs_to :user
   has_many :waypoints, dependent: :destroy
@@ -10,13 +12,20 @@ class Route < ApplicationRecord
   def self.send_alerts(time)
     time = time
     routes = Route.where(end_time: time)
-  # Faraday.post('https://hifu-sms.herokuapp.com/alert', '{"phone": "+13038758190", "name": "Joe Smith", "activity": "kayaking", "email": "friend@example.com" }')
-  # require "pry"; binding.pry
     routes.each do |route|
-      phone = route.contact.phone
-      test_string = '{ "phone": #{route.contact.phone}, "name": #{route.user.name}, "activity": #{route.activity}, "email": #{route.contact.email} }'
-      require "pry"; binding.pry
-      Faraday.post('https://hifu-sms.herokuapp.com/alert', '{ "phone": phone, "name": #{route.user.name}, "activity": #{route.activity}, "email": #{route.contact.email} }')
+      @phone = route.contact.phone.to_s
+      @name = route.user.name.to_s
+      @activity = route.activity.to_s
+      @email = route.contact.email.to_s
+
+      data = {
+              "phone" => @phone,
+              "name" => @name,
+              "activity" => @activity,
+              "email" => @email
+            }
+      json = data.to_json
+      Faraday.post('https://hifu-sms.herokuapp.com/alert', json)
     end
   end
 end
