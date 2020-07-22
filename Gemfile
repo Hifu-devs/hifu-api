@@ -27,6 +27,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'travis'
 gem 'travis-lint'
+gem 'whenever', require: false
+gem 'fast_jsonapi'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -37,6 +39,8 @@ group :development, :test do
   gem 'capybara'
   gem 'faker'
   gem 'factory_bot_rails'
+  gem 'faraday'
+
 end
 
 group :development do
