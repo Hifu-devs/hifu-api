@@ -1,5 +1,5 @@
 require 'json'
 
-task :send_alert => :environment do
+task :send_alert => :development do
   Route.send_alerts(Time.now.strftime("%Y-%m-%d %H:%M"))
 end
