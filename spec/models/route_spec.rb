@@ -78,7 +78,8 @@ RSpec.describe Route, type: :model do
             end_time: Time.now.strftime("%Y-%m-%d %H:%M"),
             activity: Faker::Verb.ing_form ,
             party_size: Faker::Number.number(digits: 1),
-            notes: Faker::Music::Prince.lyric
+            notes: Faker::Music::Prince.lyric,
+            status: "complete"
             )
 
           w2 = Waypoint.create(
@@ -107,18 +108,17 @@ RSpec.describe Route, type: :model do
           user_id: u.id,
           name: "Patty Hearst",
           email: "flewelling.margo@gmail.com",
-          phone: "+19192590877"
+          phone: "+13038758190"
         )
 
         c2 = Contact.create(
           user_id: u2.id,
           name: "Babe Ruth",
           email: "flewelling.margo@gmail.com",
-          phone: "+19192590877"
+          phone: "+13038758190"
         )
 
-        expect(Route.send_alerts(Time.now.strftime("%Y-%m-%d %H:%M")).count).to equal(2)
-        # expect((Route.send_email([r1, r2])).body).to eq("Email sent successfully")
+        expect(Route.send_alerts(Time.now.strftime("%Y-%m-%d %H:%M")).count).to equal(1)
       end
 
     end
