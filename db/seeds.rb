@@ -51,12 +51,12 @@ puts "\n-- Grab a snickers, we're about to make a bunch of entries O(n^2) style 
       party_size: Faker::Number.number(digits: 1),
       notes: Faker::Music::Prince.lyric
       )
-      
+
       c = Contact.create(
         user_id: u.id,
         name: Faker::Name.name,
         email: "hifudev2001@gmail.com",
-        phone: "+13038758190"
+        phone: "+17205775625"
       )
 
   last_wp = nil
