@@ -18,7 +18,7 @@ class Route < ApplicationRecord
   end
 
   def self.send_text(routes)
-    Array(routes).each do |route|
+    routes.each do |route|
       @phone = route.contact.phone.to_s
       @name = route.user.name.to_s
       @activity = route.activity.to_s
@@ -36,7 +36,7 @@ class Route < ApplicationRecord
   end
 
   def self.send_email(routes)
-    Array(routes).each do |route|
+    routes.each do |route|
       info = { "data": {
                "user": { "name": route.user.name,
                          "email": route.user.email,
