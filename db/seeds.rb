@@ -26,7 +26,7 @@ ActiveRecord::Base.connection.tables.each do |t|
 end
 
 puts "\n-- Grab a snickers, we're about to make a bunch of entries O(n^2) style --"
-100.times do |i|
+5.times do |i|
   u = User.create(
       name: Faker::Name.name,
       email: Faker::Internet.email,
@@ -51,12 +51,19 @@ puts "\n-- Grab a snickers, we're about to make a bunch of entries O(n^2) style 
       party_size: Faker::Number.number(digits: 1),
       notes: Faker::Music::Prince.lyric
       )
+      
+      c = Contact.create(
+        user_id: u.id,
+        name: Faker::Name.name,
+        email: "hifudev2001@gmail.com",
+        phone: "+13038758190"
+      )
 
   last_wp = nil
   eta = r.start_time + 1.hours
 
   i.times do |t|
-    print_and_flush("\tCreating User and Routes #{i+1}%" + 
+    print_and_flush("\tCreating User and Routes #{i+1}%" +
     "\tCreating Route's Waypoints #{(t + 1.0 / i * 100).to_i + 1}%")
 
     w = r.waypoints.create(
@@ -65,9 +72,10 @@ puts "\n-- Grab a snickers, we're about to make a bunch of entries O(n^2) style 
         eta: eta
         )
 
+
     if last_wp
-      last_wp.next = w 
-      eta = last_wp.eta + rand(10..100).minutes 
+      last_wp.next = w
+      eta = last_wp.eta + rand(10..100).minutes
     end
 
     last_wp = w
@@ -75,6 +83,3 @@ puts "\n-- Grab a snickers, we're about to make a bunch of entries O(n^2) style 
 end
 
 puts "\n\n-- Seeding complete --\n"
-
-
-
