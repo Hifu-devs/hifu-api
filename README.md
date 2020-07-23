@@ -16,9 +16,10 @@ Hifu-api supports it's mobile application counterpart via a Rails + GraphQL api 
 ### Endpoints
 
 - #### Mutations
+  
   - `createHifu`
     - description
-      - Creates an entire hifu record in the DB
+      - Adds an entire hifu record to the app
     - arguments
       - user
         - name
@@ -28,19 +29,50 @@ Hifu-api supports it's mobile application counterpart via a Rails + GraphQL api 
         - age
         - race
         - gender
-        - sat
+        - satTrackerAddress
+        - bloodType
+        - allergies
+        - medicalConditions
+        - heightCM
+        - weightKG
+        - contact:
+          - name
+          - email
+          - phone
+        - route:
+          - startTime
+          - endTime
+          - activity
+          - partySize
+          - notes
+          - waypoints: [ ]
+            - latitude
+            - longitude
+            - eta
     - return fields
+      - userType
     - errors
+      - TBD
   - `checkIn`
     - description
+      - Removes a hifu record from the app
     - arguments
+      - userEmail
     - return fields
+      - user record that was removed
     - errors
+      - TBD
+      - 
 - #### Queries
-  - `route`
+  
+  - `hifu`
     - description
-    - arguemtns
+      - Return info of single hifu
+    - arguments
+      - userEmail
     - fields
+      - User
     - errors
+      - TBD
   
 
