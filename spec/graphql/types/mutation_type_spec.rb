@@ -10,7 +10,8 @@ RSpec.describe Types::MutationType do
 
       expected_user = build(:user_route_contact)
       waypoints = build_list(:waypoint, 3)
-      
+      expected_user.contact.phone = "+15551234567"
+
       query = <<~QL
       mutation{
         createHifu(
@@ -31,7 +32,7 @@ RSpec.describe Types::MutationType do
           contact: {
             name: "#{expected_user.contact.name}"
             email: "#{expected_user.contact.email}"
-            phone: "#{expected_user.contact.phone}"
+            phone: "5551234567"
           }
           route: {
             startTime:  "#{expected_user.route.start_time}"
@@ -68,10 +69,11 @@ RSpec.describe Types::MutationType do
         }
       }
       QL
-      
+
       ql_response = HifuApiSchema.execute(query)
       user = User.first
-      
+
+
       expect(user.name).to eq(expected_user.name)
       expect(user.email).to eq(expected_user.email)
       expect(user.phone).to eq(expected_user.phone)
@@ -85,7 +87,7 @@ RSpec.describe Types::MutationType do
       expect(user.medical_conditions).to eq(expected_user.medical_conditions)
       expect(user.heightCM).to eq(expected_user.heightCM)
       expect(user.weightKG).to eq(expected_user.weightKG)
-      
+
       expect(user.contact.name).to eq(expected_user.contact.name)
       expect(user.contact.email).to eq(expected_user.contact.email)
       expect(user.contact.phone).to eq(expected_user.contact.phone)

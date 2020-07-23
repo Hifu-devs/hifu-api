@@ -22,7 +22,12 @@ module Mutations
         weightKG: graph_user.weightKG,
       )
 
-      user.contact = Contact.create(graph_user.contact.to_h)
+      contact = graph_user.contact.to_h
+      user.contact = Contact.create(
+        name: contact[:name],
+        email: contact[:email],
+        phone: "+1" + contact[:phone]
+      )
 
       user.route = Route.create(
         start_time: graph_user.route.startTime,
@@ -31,7 +36,7 @@ module Mutations
         party_size: graph_user.route.partySize,
         notes: graph_user.route.notes
       )
-      
+
       graph_user.route.waypoints.each_with_index do |waypoint, i|
         user.route.waypoints << Waypoint.create(
           latitude: waypoint.latitude,
