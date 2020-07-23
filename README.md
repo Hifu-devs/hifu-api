@@ -57,7 +57,7 @@ Hifu-api supports it's mobile application counterpart via a Rails + GraphQL api 
       - user
     - errors
       - TBD
-  - `checkIn`
+  - `checkIn` (Not Yet Implimented)
     - description
       - Removes a hifu record from the app
     - arguments
@@ -69,7 +69,7 @@ Hifu-api supports it's mobile application counterpart via a Rails + GraphQL api 
   
 - #### Queries
   
-  - `hifu`
+  - `hifu` (Not Yet Implimented)
     - description
       - Return info of single hifu
     - arguments
