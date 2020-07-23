@@ -1,24 +1,36 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Hifu
 
-Things you may want to cover:
+A backend for the Hifu mobile application.
 
-* Ruby version
+Hifu-api supports it's mobile application counterpart via a Rails + GraphQL api and multiple messaging microservices written in sinatra.  The mobile application can post a hifu route to the api (see endpoints below), which is then stored in a postgresql database. A background worker checks for any routes that have expired (past the `end_time` specified in the `route`). Expired routes are then forwarded to the messaging microservices which contact the emergency contact on record.
 
-* System dependencies
+### Local Setup
+ - Clone
+ - bundle
+ - rails s
+ - you
 
-* Configuration
 
-* Database creation
+### Endpoints
 
-* Database initialization
+- #### Mutations
+  - `createHifu`
+    - description
+    - arguments
+    - return fields
+    - errors
+  - `checkIn`
+    - description
+    - arguments
+    - return fields
+    - errors
+- #### Queries
+  - `route`
+    - description
+    - arguemtns
+    - fields
+    - errors
+  
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
