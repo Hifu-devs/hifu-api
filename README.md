@@ -25,36 +25,36 @@ Hifu-api supports it's mobile application counterpart via a Rails + GraphQL api 
     - description
       - Adds an entire hifu record to the app
     - arguments
-      - user
-        - name
-        - email
-        - phone
-        - address
-        - age
-        - race
-        - gender
-        - satTrackerAddress
-        - bloodType
-        - allergies
-        - medicalConditions
-        - heightCM
-        - weightKG
+      - user:
+        - name: String
+        - email: String
+        - phone: Int
+        - address: String
+        - age: Int
+        - race: String
+        - gender: String
+        - satTrackerAddress: String
+        - bloodType: String
+        - allergies: String
+        - medicalConditions: String
+        - heightCM: Int
+        - weightKG: Int
         - contact:
-          - name
-          - email
-          - phone
+          - name: String
+          - email: String
+          - phone: String
         - route:
-          - startTime
-          - endTime
-          - activity
-          - partySize
-          - notes
+          - startTime: String
+          - endTime: String
+          - activity: String
+          - partySize: Int
+          - notes: String
           - waypoints: [ ]
-            - latitude
-            - longitude
-            - eta
+            - latitude: Float
+            - longitude: Float
+            - eta: String
     - return fields
-      - userType
+      - user
     - errors
       - TBD
   - `checkIn`
@@ -73,8 +73,8 @@ Hifu-api supports it's mobile application counterpart via a Rails + GraphQL api 
     - description
       - Return info of single hifu
     - arguments
-      - userEmail
+      - userEmail: String
     - fields
-      - User
+      - user
     - errors
       - TBD
