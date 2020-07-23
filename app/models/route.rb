@@ -10,7 +10,6 @@ class Route < ApplicationRecord
   enum status: {active: 0, complete: 1, notified: 2}
 
   def self.send_alerts(time)
-    time = time
     routes = Route.where('end_time <= ?', time).where(status: "active")
     send_text(routes)
     send_email(routes)
