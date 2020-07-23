@@ -1,6 +1,7 @@
 require 'json'
-require './models/route.rb'
 
-task :send_alert do
-  Route.send_alerts(Time.now.strftime("%Y-%m-%d %H:%M"))
+
+task :send_alert => :environment do
+  routes = Route.send_alerts(Time.now.strftime("%Y-%m-%d %H:%M"))
+  routes.each {|route| route.destroy }
 end
