@@ -18,7 +18,17 @@ Hifu-api supports it's mobile application counterpart via a Rails + GraphQL api 
 - #### Mutations
   - `createHifu`
     - description
+      - Creates an entire hifu record in the DB
     - arguments
+      - user
+        - name
+        - email
+        - phone
+        - address
+        - age
+        - race
+        - gender
+        - sat
     - return fields
     - errors
   - `checkIn`
