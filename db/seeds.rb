@@ -105,7 +105,7 @@ puts "\n-- Grab a snickers, we're about to make a bunch of entries O(n^2) style 
       c = Contact.create(
         user_id: u.id,
         name: Faker::Name.name,
-        email: "hifudev2001@gmail.com",
+        email: "flewelling.margo@gmail.com",
         phone: "+17205775625"
       )
 
