@@ -5,7 +5,16 @@ RSpec.describe Types::MutationType do
     User.destroy_all
   end
 
-  describe 'route mutations' do
+  describe 'checkin mutation' do
+    it 'can checkin' do
+      expected_user = build(:user_route_contact)
+      waypoints = build_list(:waypoint, 3)
+      binding.pry
+    end
+    
+  end
+
+  describe 'hifu mutations' do
     it 'can create user contact route waypoints in one endpoint' do
 
       expected_user = build(:user_route_contact)
