@@ -11,8 +11,8 @@ class Route < ApplicationRecord
 
   def self.send_alerts(time)
     time = time
-    routes = Route.where(end_time: time)
-    # send_text(routes)
+    routes = Route.where('end_time <= ?', time)
+    send_text(routes)
     send_email(routes)
     routes
   end
