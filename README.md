@@ -74,5 +74,3 @@ Hifu-api supports it's mobile application counterpart via a Rails + GraphQL api 
       - User
     - errors
       - TBD
-  
-
