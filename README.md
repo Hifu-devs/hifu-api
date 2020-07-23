@@ -1,16 +1,20 @@
-# README
+# Hifu
 
-## Hifu
+## When you want to get lost, but still be found
+
+### Overview
 
 A backend for the Hifu mobile application.
 
 Hifu-api supports it's mobile application counterpart via a Rails + GraphQL api and multiple messaging microservices written in sinatra.  The mobile application can post a hifu route to the api (see endpoints below), which is then stored in a postgresql database. A background worker checks for any routes that have expired (past the `end_time` specified in the `route`). Expired routes are then forwarded to the messaging microservices which contact the emergency contact on record.
 
 ### Local Setup
+
  - Clone
  - bundle
+ - rails db:{create,migrate,seed}
  - rails s
- - you
+ - All endpoints are available at: `/graphql`
 
 
 ### Endpoints
@@ -62,7 +66,7 @@ Hifu-api supports it's mobile application counterpart via a Rails + GraphQL api 
       - user record that was removed
     - errors
       - TBD
-      - 
+  
 - #### Queries
   
   - `hifu`
