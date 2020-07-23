@@ -5,7 +5,44 @@ RSpec.describe Types::MutationType do
     User.destroy_all
   end
 
-  describe 'route mutations' do
+  describe 'checkin mutation' do
+    it 'can checkin' do
+      user = build(:user_route_contact)
+      create(:waypoint, route: user.route)
+      3.times do
+        create(:waypoint, route_id: user.route.id, previous_id: user.route.waypoints.last.id)
+      end
+      
+      query = <<~QL
+      mutation{
+        checkIn(
+          userEmail: "#{user.email}"
+        ){
+          user{
+            name
+            email
+          }
+        }
+      }
+      QL
+
+      expect(User.all.count).to eq(1)
+      expect(Route.all.count).to eq(1)
+      expect(Waypoint.all.count).to eq(4)
+
+
+      ql_response = HifuApiSchema.execute(query)
+      ql_user = ql_response.to_h["data"]["checkIn"]["user"]
+      
+      expect(Route.all.count).to eq(0)
+      expect(Waypoint.all.count).to eq(0)
+      expect(User.all.count).to eq(0)
+      expect(ql_user["name"]).to eq(user.name)
+      expect(ql_user["email"]).to eq(user.email)
+    end
+  end
+
+  describe 'hifu mutations' do
     it 'can create user contact route waypoints in one endpoint' do
 
       expected_user = build(:user_route_contact)
