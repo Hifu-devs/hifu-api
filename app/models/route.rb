@@ -7,13 +7,14 @@ class Route < ApplicationRecord
 
 # default status is 0, active
 # maybe we don't even need this if we are going to destroy upon checking in
-  enum status: {active: 0, complete: 1}
+  enum status: {active: 0, complete: 1, notified: 2}
 
   def self.send_alerts(time)
     time = time
-    routes = Route.where('end_time <= ?', time)
+    routes = Route.where('end_time <= ?', time).where(status: "active")
     send_text(routes)
     send_email(routes)
+    routes.each { |route| route.status == "notified"}
     routes
   end
 
