@@ -20,7 +20,7 @@ Hifu-api supports it's mobile application counterpart via a Rails + GraphQL api 
  - bundle
  - rails db:{create,migrate,seed}
  - rails s
- - All endpoints are available at: `/graphql`
+ - All endpoints are available at: `api/v1/`
 
 ### Production
 
