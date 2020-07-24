@@ -12,18 +12,30 @@ RSpec.describe 'Types::QueryType' do
         query{
           routeStartTime(
             userEmail: "#{user.email}"
-          ){
-            route{
-              startTime
-            }
-          }
+          )
         }
       QL
 
       ql_response = HifuApiSchema.execute(query)
-      ql_route = ql_response.to_h["data"]["routeStartTime"]["route"]
+      startTime = ql_response.to_h["data"]["routeStartTime"]
 
-      expect(ql_route.startTime).to eq(user.route.start_time)
+      expect(startTime).to eq(user.route.start_time.to_s)
+    end
+
+    it 'responds with not found message when user not found' do
+      query = <<~QL
+        query{
+          routeStartTime(
+            userEmail: "tacos@tacos.com"
+          )
+        }
+      QL
+
+      ql_response = HifuApiSchema.execute(query)
+      startTime = ql_response.to_h["data"]["routeStartTime"]
+
+      expect(ql_response.to_h["errors"].first["message"]).to eq("No user with email tacos@tacos.com")
+      expect(startTime).to eq(nil)
     end
   end
 end
