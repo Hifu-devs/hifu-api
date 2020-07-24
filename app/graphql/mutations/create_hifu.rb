@@ -29,9 +29,10 @@ module Mutations
         email: contact[:email],
         phone: "+1" + contact[:phone]
       )
+
       user.route = Route.create(
-        start_time: graph_user.route.startTime,
-        end_time: graph_user.route.endTime,
+        start_time: graph_user.route.startTime.to_datetime,
+        end_time: graph_user.route.endTime.to_datetime,
         activity: graph_user.route.activity.capitalize,
         party_size: graph_user.route.partySize,
         notes: graph_user.route.notes
