@@ -13,8 +13,8 @@ class Route < ApplicationRecord
     routes = Route.where('end_time <= ?', time).where(status: "active")
     send_text(routes)
     send_email(routes)
-    routes.each { |route| route.status = "notified"}
-    routes
+    routes.each { |route| route.update(status: "notified")}
+    Array(routes)
   end
 
   def self.send_text(routes)

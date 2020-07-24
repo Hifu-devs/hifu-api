@@ -117,8 +117,10 @@ RSpec.describe Route, type: :model do
           email: "flewelling.margo@gmail.com",
           phone: "+17205775625"
         )
-
-        expect(Route.send_alerts(Time.now.strftime("%Y-%m-%d %H:%M")).count).to equal(1)
+        expect(r1.status).to eq("active")
+        expect(Route.send_alerts(Time.now.strftime("%Y-%m-%d %H:%M")).count).to eq(1)
+        r1.reload
+        expect(r1.status).to eq("notified")
       end
 
     end
