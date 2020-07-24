@@ -5,12 +5,50 @@ RSpec.describe Types::MutationType do
     User.destroy_all
   end
 
-  describe 'route mutations' do
+  describe 'checkin mutation' do
+    it 'can checkin' do
+      user = build(:user_route_contact)
+      create(:waypoint, route: user.route)
+      3.times do
+        create(:waypoint, route_id: user.route.id, previous_id: user.route.waypoints.last.id)
+      end
+      
+      query = <<~QL
+      mutation{
+        checkIn(
+          userEmail: "#{user.email}"
+        ){
+          user{
+            name
+            email
+          }
+        }
+      }
+      QL
+
+      expect(User.all.count).to eq(1)
+      expect(Route.all.count).to eq(1)
+      expect(Waypoint.all.count).to eq(4)
+
+
+      ql_response = HifuApiSchema.execute(query)
+      ql_user = ql_response.to_h["data"]["checkIn"]["user"]
+      
+      expect(Route.all.count).to eq(0)
+      expect(Waypoint.all.count).to eq(0)
+      expect(User.all.count).to eq(0)
+      expect(ql_user["name"]).to eq(user.name)
+      expect(ql_user["email"]).to eq(user.email)
+    end
+  end
+
+  describe 'hifu mutations' do
     it 'can create user contact route waypoints in one endpoint' do
 
       expected_user = build(:user_route_contact)
       waypoints = build_list(:waypoint, 3)
-      
+      expected_user.contact.phone = "+15551234567"
+
       query = <<~QL
       mutation{
         createHifu(
@@ -31,7 +69,7 @@ RSpec.describe Types::MutationType do
           contact: {
             name: "#{expected_user.contact.name}"
             email: "#{expected_user.contact.email}"
-            phone: "#{expected_user.contact.phone}"
+            phone: "5551234567"
           }
           route: {
             startTime:  "#{expected_user.route.start_time}"
@@ -68,10 +106,11 @@ RSpec.describe Types::MutationType do
         }
       }
       QL
-      
+
       ql_response = HifuApiSchema.execute(query)
       user = User.first
-      
+
+
       expect(user.name).to eq(expected_user.name)
       expect(user.email).to eq(expected_user.email)
       expect(user.phone).to eq(expected_user.phone)
@@ -85,7 +124,7 @@ RSpec.describe Types::MutationType do
       expect(user.medical_conditions).to eq(expected_user.medical_conditions)
       expect(user.heightCM).to eq(expected_user.heightCM)
       expect(user.weightKG).to eq(expected_user.weightKG)
-      
+
       expect(user.contact.name).to eq(expected_user.contact.name)
       expect(user.contact.email).to eq(expected_user.contact.email)
       expect(user.contact.phone).to eq(expected_user.contact.phone)
