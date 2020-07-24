@@ -46,7 +46,7 @@ test_user = User.create(
 test_route = Route.create(
     user_id: test_user.id,
     start_time: Faker::Time.between(from: 1.minutes.from_now, to: 10.minutes.from_now),
-    end_time: Faker::Time.between(from: 120.minutes.from_now, to: 125.minutes.from_now),
+    end_time: Faker::Time.between(from: 30.minutes.from_now, to: 32.minutes.from_now),
     activity: Faker::Verb.ing_form,
     party_size: Faker::Number.number(digits: 1),
     notes: Faker::Music::Prince.lyric
@@ -68,7 +68,7 @@ test_way2 = Waypoint.create(
 c = Contact.create(
   user_id: test_user.id,
   name: "TESTING Heroku scheduler",
-  email: "hifudev2001@gmail.com",
+  email: "flewelling.margo@gmail.com",
   phone: "+17205775625"
 )
 
@@ -105,7 +105,7 @@ puts "\n-- Grab a snickers, we're about to make a bunch of entries O(n^2) style 
       c = Contact.create(
         user_id: u.id,
         name: Faker::Name.name,
-        email: "hifudev2001@gmail.com",
+        email: "flewelling.margo@gmail.com",
         phone: "+17205775625"
       )
 
