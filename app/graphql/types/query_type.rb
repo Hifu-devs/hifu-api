@@ -1,13 +1,15 @@
 module Types
   class QueryType < Types::BaseObject
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
-
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World!"
+    field :routeEndTime, String, null: true do
+       argument :userEmail, String, required: true
+    end
+    def routeEndTime(userEmail:)
+      user = User.find_by(email: userEmail)
+      if !user
+        raise GraphQL::ExecutionError,  "No user with email #{userEmail}" 
+      end
+      endTime = user.route.end_time
+      endTime
     end
   end
 end
