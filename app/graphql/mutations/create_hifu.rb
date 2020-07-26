@@ -7,17 +7,17 @@ module Mutations
 
      def resolve(graph_user:)
       user = User.create(
-        name: graph_user.name.titleize,
+        name: graph_user.name,
         email: graph_user.email,
         phone: graph_user.phone,
         address: graph_user.address,
         age: graph_user.age,
         race: graph_user.race,
-        gender: graph_user.gender.capitalize,
+        gender: graph_user.gender,
         sat_tracker_address: graph_user.satTrackerAddress,
-        blood_type: graph_user.bloodType.upcase,
+        blood_type: graph_user.bloodType,
         allergies: graph_user.allergies,
-        medical_conditions: graph_user.medicalConditions.capitalize,
+        medical_conditions: graph_user.medicalConditions,
         heightCM: graph_user.heightCM,
         weightKG: graph_user.weightKG,
       )
@@ -25,15 +25,15 @@ module Mutations
 
       contact = graph_user.contact.to_h
       user.contact = Contact.create(
-        name: contact[:name].titleize,
+        name: contact[:name],
         email: contact[:email],
         phone: "+1" + contact[:phone]
       )
 
       user.route = Route.create(
-        start_time: graph_user.route.startTime.to_datetime,
-        end_time: graph_user.route.endTime.to_datetime,
-        activity: graph_user.route.activity.capitalize,
+        start_time: graph_user.route.startTime,
+        end_time: graph_user.route.endTime,
+        activity: graph_user.route.activity,
         party_size: graph_user.route.partySize,
         notes: graph_user.route.notes
       )
