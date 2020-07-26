@@ -37,7 +37,7 @@ class Route < ApplicationRecord
 
   def self.send_email(routes)
     routes.each do |route|
-      authority_info = route.get_authority_info
+      authority_info = JSON.parse(HifuAuthoritiesService.new.authority_info(route.waypoints.first).body)
       info = { "data": {
                "user": { "name": route.user.name,
                          "email": route.user.email,
@@ -60,24 +60,16 @@ class Route < ApplicationRecord
                                   "activity": route.activity,
                                   "party_size": route.party_size,
                                   "notes": route.notes,
-                                  "waypoints": route.waypoints }
+                                  "waypoints": route.waypoints },
+                         "local_authorities": { "name": authority_info["name"],
+                                                "phone_number": authority_info["phone"] }
                           }
                         }
-
                   }
       json = info.to_json
       Faraday.post('https://nameless-ravine-82701.herokuapp.com/email_alert', json)
     end
   end
 
-  def get_authority_info
-    latitude = self.waypoints.first.latitude
-    longitude = self.waypoints.first.longitude
-    response = Faraday.get('https://hifu-authorities-service.herokuapp.com/sheriff') do |req|
-      req.params['lat'] = latitude
-      req.params['long'] = longitude
-    end
-    parsed = JSON.parse(response.body)
-  end
 
 end
