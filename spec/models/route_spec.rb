@@ -106,14 +106,14 @@ RSpec.describe Route, type: :model do
 
         c1 = Contact.create(
           user_id: u.id,
-          name: "Patty Hearst",
-          email: "test123@gmail.com",
+          name: "Gabby Goodfriend",
+          email: "flewelling.margo@gmail.com",
           phone: "+17205775625"
         )
 
         c2 = Contact.create(
           user_id: u2.id,
-          name: "Babe Ruth",
+          name: "Jack Jones",
           email: "flewelling.margo@gmail.com",
           phone: "+17205775625"
         )
