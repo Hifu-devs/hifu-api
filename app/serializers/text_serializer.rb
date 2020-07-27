@@ -1,4 +1,4 @@
-class RouteSerializer
+class TextSerializer
   include FastJsonapi::ObjectSerializer
   attribute :activity
 
