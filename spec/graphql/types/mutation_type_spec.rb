@@ -141,5 +141,78 @@ RSpec.describe Types::MutationType do
       expect(user.route.waypoints.first.next.latitude).to eq(waypoints[1].latitude)
       expect(user.route.waypoints.first.next.next.latitude).to eq(waypoints[2].latitude)
     end
+
+
+    it 'can create records even with missing fields' do
+
+      expected_user = build(:user_route_contact)
+      waypoints = build_list(:waypoint, 3)
+      expected_user.contact.phone = "+15551234567"
+
+      query = <<~QL
+      mutation{
+        createHifu(
+          user: {
+          name:  "#{expected_user.name}"
+          email: "#{expected_user.email}"
+          phone: "#{expected_user.phone}"
+          address: "#{expected_user.address}"
+          age: #{expected_user.age}
+          allergies: "#{expected_user.allergies}"
+          medicalConditions: "#{expected_user.medical_conditions}"
+          heightCM: #{expected_user.heightCM}
+          weightKG: #{expected_user.weightKG}
+          contact: {
+            name: "#{expected_user.contact.name}"
+            email: "#{expected_user.contact.email}"
+            phone: "5551234567"
+          }
+          route: {
+            startTime:  "#{expected_user.route.start_time}"
+            endTime: "#{expected_user.route.end_time}"
+            activity: "#{expected_user.route.activity}"
+            partySize: #{expected_user.route.party_size}
+            waypoints: [
+              {
+                latitude: #{waypoints[0].latitude}
+                longitude: #{waypoints[0].longitude}
+                eta: "#{waypoints[0].eta}"
+
+              },
+              {
+                latitude: #{waypoints[1].latitude}
+                longitude: #{waypoints[1].longitude}
+                eta: "#{waypoints[1].eta}"
+
+              },
+              {
+                latitude: #{waypoints[2].latitude}
+                longitude: #{waypoints[2].longitude}
+                eta: "#{waypoints[2].eta}"
+
+              }
+            ]
+          }
+        }
+        ){
+          user{
+            name
+          }
+        }
+      }
+      QL
+
+      ql_response = HifuApiSchema.execute(query)
+      user = User.first
+      route = user.route
+      expect(user.save).to eq(true)
+      expect(route.save).to eq(true)
+      expect(user.blood_type).to eq(nil)
+      expect(user.gender).to eq(nil)
+      expect(user.race).to eq(nil)
+      expect(user.sat_tracker_address).to eq(nil)
+      expect(user.route.notes).to eq(nil)
+    end
+
   end
 end
