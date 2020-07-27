@@ -19,8 +19,8 @@ class Route < ApplicationRecord
 
   def self.send_text(routes)
     routes.each do |route|
-      json_string = RouteSerializer.new(route).serialized_json
-      post = Faraday.post('https://hifu-sms.herokuapp.com/alert', json_string)
+      json_string = TextSerializer.new(route).serialized_json
+      Faraday.post('https://hifu-sms.herokuapp.com/alert', json_string)
     end
   end
 
