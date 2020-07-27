@@ -41,6 +41,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'faraday'
+  gem 'fast_jsonapi'
 
 end
 
