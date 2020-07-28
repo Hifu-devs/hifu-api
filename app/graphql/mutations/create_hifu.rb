@@ -1,11 +1,14 @@
 module Mutations
   class Mutations::CreateHifu < Mutations::BaseMutation
     argument :user, Types::Input::UserInputType, required: true, as: :graph_user
+    argument :contact, Types::Input::ContactInputType, required: true, as: :graph_contact
+    argument :route, Types::Input::RouteInputType, required: true, as: :graph_route
 
     field :user,  Types::UserType, null: true
     field :errors, [String], null: false
 
-     def resolve(graph_user:)
+     def resolve(graph_user:, graph_contact:, graph_route:)
+      binding.pry
       user = User.create(
         name: graph_user.name,
         email: graph_user.email,
@@ -23,7 +26,8 @@ module Mutations
       )
 
 
-      contact = graph_user.contact.to_h
+      contact = graph_contact.to_h
+
       user.contact = Contact.create(
         name: contact[:name],
         email: contact[:email],
@@ -31,14 +35,14 @@ module Mutations
       )
 
       user.route = Route.create(
-        start_time: graph_user.route.startTime,
-        end_time: graph_user.route.endTime,
-        activity: graph_user.route.activity,
-        party_size: graph_user.route.partySize,
-        notes: graph_user.route.notes
+        start_time: graph_route.startTime,
+        end_time: graph_route.endTime,
+        activity: graph_route.activity,
+        party_size: graph_route.partySize,
+        notes: graph_route.notes
       )
 
-      graph_user.route.waypoints.each_with_index do |waypoint, i|
+      graph_route.waypoints.each_with_index do |waypoint, i|
         user.route.waypoints << Waypoint.create(
           latitude: waypoint.latitude,
           longitude: waypoint.longitude,
