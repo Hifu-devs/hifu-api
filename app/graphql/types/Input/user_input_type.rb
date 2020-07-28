@@ -6,7 +6,7 @@ module Types
     argument :phone, String, required: false
     argument :address, String, required: false
     argument :age, String, required: false
-    argument :race, String, required: false
+    argument :ethnicity, String, required: false
     argument :gender, String, required: false
     argument :satTrackerAddress, String, required: false
     argument :bloodType, String, required: false

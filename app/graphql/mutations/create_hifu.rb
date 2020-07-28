@@ -15,7 +15,7 @@ module Mutations
         phone: graph_user.phone,
         address: graph_user.address,
         age: graph_user.age.to_i,
-        race: graph_user.race,
+        race: graph_user.ethnicity,
         gender: graph_user.gender,
         sat_tracker_address: graph_user.satTrackerAddress,
         blood_type: graph_user.bloodType,
