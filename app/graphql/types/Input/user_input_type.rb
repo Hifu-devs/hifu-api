@@ -5,15 +5,15 @@ module Types
     argument :email, String, required: true
     argument :phone, String, required: false
     argument :address, String, required: false
-    argument :age, Integer, required: false
+    argument :age, String, required: false
     argument :race, String, required: false
     argument :gender, String, required: false
     argument :satTrackerAddress, String, required: false
     argument :bloodType, String, required: false
     argument :allergies, String, required: false
     argument :medicalConditions, String, required: false
-    argument :heightCM, Integer, required: false
-    argument :weightKG, Integer, required: false
+    argument :heightCM, String, required: false
+    argument :weightKG, String, required: false
     argument :contact, Types::Input::ContactInputType, required: false
     argument :route, Types::Input::RouteInputType, required: false
   end
