@@ -8,7 +8,7 @@ module Mutations
     field :user,  Types::UserType, null: true
     field :errors, [String], null: false
 
-     def resolve(graph_user:, graph_contact:, graph_route:, graph_waypoints:)
+     def resolve(graph_user:, graph_contact:, graph_route:)
       binding.pry
       user = User.create(
         name: graph_user.name,
