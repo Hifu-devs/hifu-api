@@ -5,7 +5,7 @@ module Types
     argument :startDate,  GraphQL::Types::ISO8601DateTime, required: false
     argument :endDate,  GraphQL::Types::ISO8601DateTime, required: true
     argument :activity, String, required: false
-    argument :partySize, Integer, required: false
+    argument :partySize, String, required: false
     argument :notes, String, required: false
     argument :wayPoints, [Types::Input::WaypointInputType], required: false
   end

@@ -57,15 +57,15 @@ RSpec.describe Types::MutationType do
           email: "#{expected_user.email}"
           phone: "#{expected_user.phone}"
           address: "#{expected_user.address}"
-          age: #{expected_user.age}
-          race: "#{expected_user.race}"
+          age: "#{expected_user.age}"
+          ethnicity: "#{expected_user.race}"
           gender: "#{expected_user.gender}"
           satTrackerAddress: "#{expected_user.sat_tracker_address}"
           bloodType: "#{expected_user.blood_type}"
           allergies: "#{expected_user.allergies}"
           medicalConditions: "#{expected_user.medical_conditions}"
-          heightCM: #{expected_user.heightCM}
-          weightKG: #{expected_user.weightKG}
+          heightCM: "#{expected_user.heightCM}"
+          weightKG: "#{expected_user.weightKG}"
           }
           contact: {
             name: "#{expected_user.contact.name}"
@@ -76,7 +76,7 @@ RSpec.describe Types::MutationType do
             startDate:  "#{expected_user.route.start_time.utc.iso8601}"
             endDate: "#{expected_user.route.end_time.utc.iso8601}"
             activity: "#{expected_user.route.activity}"
-            partySize: #{expected_user.route.party_size}
+            partySize: "#{expected_user.route.party_size}"
             notes: "#{expected_user.route.notes}"
             wayPoints: [
               {
@@ -157,11 +157,11 @@ RSpec.describe Types::MutationType do
           email: "#{expected_user.email}"
           phone: "#{expected_user.phone}"
           address: "#{expected_user.address}"
-          age: #{expected_user.age}
+          age: "#{expected_user.age}"
           allergies: "#{expected_user.allergies}"
           medicalConditions: "#{expected_user.medical_conditions}"
-          heightCM: #{expected_user.heightCM}
-          weightKG: #{expected_user.weightKG}
+          heightCM: "#{expected_user.heightCM}"
+          weightKG: "#{expected_user.weightKG}"
           }
           contact: {
             name: "#{expected_user.contact.name}"
@@ -172,7 +172,7 @@ RSpec.describe Types::MutationType do
             startDate:  "#{expected_user.route.start_time.utc.iso8601}"
             endDate: "#{expected_user.route.end_time.utc.iso8601}"
             activity: "#{expected_user.route.activity}"
-            partySize: #{expected_user.route.party_size}
+            partySize: "#{expected_user.route.party_size}"
             wayPoints: [
               {
                 latitude: #{waypoints[0].latitude}
