@@ -43,7 +43,7 @@ module Mutations
         notes: graph_route.notes
       )
 
-      graph_route.waypoints.each_with_index do |waypoint, i|
+      graph_route.wayPoints.each_with_index do |waypoint, i|
         user.route.waypoints << Waypoint.create(
           latitude: waypoint.latitude,
           longitude: waypoint.longitude,
