@@ -2,8 +2,8 @@ module Types
   class Input::RouteInputType < Input::BaseInput
     description "Attributes for creating or updating a route"
     argument :userEmail, String, required: false
-    argument :startTime, String, required: false
-    argument :endTime, String, required: true
+    argument :startTime, Date, required: false
+    argument :endTime, Date, required: true
     argument :activity, String, required: false
     argument :partySize, Integer, required: false
     argument :notes, String, required: false
