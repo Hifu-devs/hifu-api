@@ -3,11 +3,12 @@ module Mutations
     argument :user, Types::Input::UserInputType, required: true, as: :graph_user
     argument :contact, Types::Input::ContactInputType, required: true, as: :graph_contact
     argument :route, Types::Input::RouteInputType, required: true, as: :graph_route
+    argument :waypoints, Types::Input::WaypointInputType, required: true, as: :graph_waypoints
 
     field :user,  Types::UserType, null: true
     field :errors, [String], null: false
 
-     def resolve(graph_user:, graph_contact:, graph_route:)
+     def resolve(graph_user:, graph_contact:, graph_route:, graph_waypoints:)
       binding.pry
       user = User.create(
         name: graph_user.name,
@@ -42,7 +43,7 @@ module Mutations
         notes: graph_route.notes
       )
 
-      graph_route.waypoints.each_with_index do |waypoint, i|
+      graph_waypoints.each_with_index do |waypoint, i|
         user.route.waypoints << Waypoint.create(
           latitude: waypoint.latitude,
           longitude: waypoint.longitude,
