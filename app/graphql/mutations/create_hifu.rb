@@ -35,8 +35,8 @@ module Mutations
       )
 
       user.route = Route.create(
-        start_time: graph_route.startTime,
-        end_time: graph_route.endTime,
+        start_time: graph_route.startDate,
+        end_time: graph_route.endDate,
         activity: graph_route.activity,
         party_size: graph_route.partySize,
         notes: graph_route.notes
