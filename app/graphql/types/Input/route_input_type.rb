@@ -7,6 +7,6 @@ module Types
     argument :activity, String, required: false
     argument :partySize, Integer, required: false
     argument :notes, String, required: false
-    argument :wayPoints, [Types::Input::WaypointInputType], required: false
+    # argument :wayPoints, [Types::Input::WaypointInputType], required: false
   end
 end
