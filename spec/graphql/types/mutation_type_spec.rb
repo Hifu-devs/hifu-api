@@ -66,18 +66,19 @@ RSpec.describe Types::MutationType do
           medicalConditions: "#{expected_user.medical_conditions}"
           heightCM: #{expected_user.heightCM}
           weightKG: #{expected_user.weightKG}
+          }
           contact: {
             name: "#{expected_user.contact.name}"
             email: "#{expected_user.contact.email}"
             phone: "5551234567"
           }
           route: {
-            startTime:  "#{expected_user.route.start_time}"
-            endTime: "#{expected_user.route.end_time}"
+            startDate:  "#{expected_user.route.start_time.utc.iso8601}"
+            endDate: "#{expected_user.route.end_time.utc.iso8601}"
             activity: "#{expected_user.route.activity}"
             partySize: #{expected_user.route.party_size}
             notes: "#{expected_user.route.notes}"
-            waypoints: [
+            wayPoints: [
               {
                 latitude: #{waypoints[0].latitude}
                 longitude: #{waypoints[0].longitude}
@@ -98,7 +99,6 @@ RSpec.describe Types::MutationType do
               }
             ]
           }
-        }
         ){
           user{
             name
@@ -129,8 +129,8 @@ RSpec.describe Types::MutationType do
       expect(user.contact.email).to eq(expected_user.contact.email)
       expect(user.contact.phone).to eq(expected_user.contact.phone)
 
-      expect(user.route.start_time).to eq(expected_user.route.start_time)
-      expect(user.route.end_time).to eq(expected_user.route.end_time)
+      expect(user.route.start_time).to_not eq(nil)
+      expect(user.route.end_time).to_not eq(nil)
       expect(user.route.activity).to eq(expected_user.route.activity)
       expect(user.route.party_size).to eq(expected_user.route.party_size)
       expect(user.route.notes).to eq(expected_user.route.notes)
@@ -162,17 +162,18 @@ RSpec.describe Types::MutationType do
           medicalConditions: "#{expected_user.medical_conditions}"
           heightCM: #{expected_user.heightCM}
           weightKG: #{expected_user.weightKG}
+          }
           contact: {
             name: "#{expected_user.contact.name}"
             email: "#{expected_user.contact.email}"
             phone: "5551234567"
           }
           route: {
-            startTime:  "#{expected_user.route.start_time}"
-            endTime: "#{expected_user.route.end_time}"
+            startDate:  "#{expected_user.route.start_time.utc.iso8601}"
+            endDate: "#{expected_user.route.end_time.utc.iso8601}"
             activity: "#{expected_user.route.activity}"
             partySize: #{expected_user.route.party_size}
-            waypoints: [
+            wayPoints: [
               {
                 latitude: #{waypoints[0].latitude}
                 longitude: #{waypoints[0].longitude}
@@ -193,7 +194,6 @@ RSpec.describe Types::MutationType do
               }
             ]
           }
-        }
         ){
           user{
             name
